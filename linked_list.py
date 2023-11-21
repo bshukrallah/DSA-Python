@@ -15,13 +15,14 @@ class LinkedList:
 
     def append(self, value):
         new_node = Node(value)
-        if self.tail is not None:
+        if self.head is not None:
             self.tail.next = new_node
             self.tail = new_node
-            self.length += 1
         else:
+            self.head = new_node
             self.tail = new_node
-            self.length += 1
+        self.length += 1
+        return True
 
     def get_head(self):
         return self.head.value
