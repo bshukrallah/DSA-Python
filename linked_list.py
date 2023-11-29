@@ -102,19 +102,38 @@ class LinkedList:
         return current_node
     
     def reverse(self):
-        temp_node = self.head
-        self.head = self.tail
-        self.tail = temp_node
+        current = self.head
+        next = None
+        previous = None
 
-        next_node = temp_node.next
-        previous_node = None
+        self.tail = self.head
+
         for _ in range(self.length):
-            next_node = temp_node.next
-            temp_node.next = previous_node
-            previous_node = temp_node
-            temp_node = next_node
-            
+            next = current.next
+            current.next = previous
+            previous = current
+            current = next
+        self.head = previous
 
+    def has_loop(self):
+        slow = self.head
+        fast = self.head
+        
+        while(fast is not None and fast.next is not None):
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+    
+    def find_middle_node(self):
+        current_node = self.head
+        second_node = self.head
+        while(second_node is not None and second_node.next is not None):
+            current_node = current_node.next
+            second_node = second_node.next.next
+        return current_node
+            
     def get_head(self):
         if (self.head):
             return self.head.value
@@ -134,6 +153,22 @@ class LinkedList:
             print(temp_node.value)
             temp_node = temp_node.next
 
+
+#find item from kth to the end
+def find_kth_from_end(ll, k):
+    slow = ll.head
+    fast = ll.head
+    
+    for _ in range(k):
+        if fast is None:
+            return None
+        fast = fast.next
+        
+    while (fast is not None):
+        slow = slow.next
+        fast = fast.next
+    return slow
+
 list1 = LinkedList(4)
 print("Head: " + str(list1.get_head()))
 list1.prepend(62)
@@ -148,6 +183,8 @@ list1.print_list()
 print(list1.get(2).value)
 list1.set_value(0, 49503)
 list1.insert(2, 223)
+list1.append(10)
+list1.append(7)
 print("####")
 list1.print_list()
 print("Head: " + str(list1.get_head()))
@@ -164,3 +201,4 @@ list1.print_list()
 print("Head: " + str(list1.get_head()))
 print("Length: " + str(list1.get_length()))
 print("Tail: " + str(list1.get_tail()))
+print(list1.find_middle_node().value)
