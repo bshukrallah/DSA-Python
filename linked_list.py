@@ -153,6 +153,29 @@ class LinkedList:
             print(temp_node.value)
             temp_node = temp_node.next
 
+    def partition_list(self, x):
+        if(self.head is None):
+            return None
+        dummy1 = Node(0)
+        dummy2 = Node(0)
+        prev1 = dummy1
+        prev2 = dummy2
+        current_node = self.head
+        while current_node is not None:
+            if current_node.value < x:
+                prev1.next = current_node
+                prev1 = current_node
+            elif current_node.value >= x:
+                prev2.next = current_node
+                prev2 = current_node
+            prev1.next = None
+            prev2.next = None
+            
+            dummy2.next = prev1
+            self.head = dummy1.next
+                    
+            current_node = current_node.next
+
 
 #find item from kth to the end
 def find_kth_from_end(ll, k):
