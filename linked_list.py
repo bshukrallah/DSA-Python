@@ -176,6 +176,18 @@ class LinkedList:
                     
             current_node = current_node.next
 
+    def remove_duplicates(self):
+        values = set()
+        previous = None
+        current_node = self.head
+        while current_node is not None:
+            if current_node.value in values:
+                previous.next = current_node.next
+                self.length -= 1
+            else:
+                values.add(current_node.value)
+                previous = current_node
+            current_node = current_node.next
 
 #find item from kth to the end
 def find_kth_from_end(ll, k):
