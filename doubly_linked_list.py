@@ -73,6 +73,19 @@ class DoublyLinkedList:
             current_node.next = None
         self.length -= 1
         return current_node
+    
+    def Get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if index < self.length/2:
+            current_node = self.head
+            for _ in range(index):
+                current_node = current_node.next
+        else:
+            current_node = self.tail
+            for _ in range(self.length - 1, index, -1):
+                current_node = current_node.previous
+        return current_node
 
     def GetTail(self):
         if self.tail:
@@ -104,3 +117,5 @@ doublyList.PrintTailHead()
 doublyList.Prepend(3)
 doublyList.print_list()
 doublyList.PrintTailHead()
+
+print(doublyList.Get(2).value)
