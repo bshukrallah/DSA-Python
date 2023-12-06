@@ -94,6 +94,26 @@ class DoublyLinkedList:
             return True
         return False
     
+    def Insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.Prepend(value)
+        if index == self.length:
+            return self.Append(value)
+        
+        new_node = Node(value)
+        previous = self.Get(index - 1)
+        next = previous.next
+
+        previous.next = new_node
+        next.previous = new_node
+        new_node.next = next
+        new_node.previous = previous
+
+        self.length += 1
+        return True
+    
     def GetTail(self):
         if self.tail:
             return self.tail
@@ -128,5 +148,12 @@ doublyList.PrintTailHead()
 print(doublyList.Get(0).value)
 
 doublyList.SetValue(2, 55)
+doublyList.print_list()
+doublyList.PrintTailHead()
+
+doublyList.Insert(0, 0)
+doublyList.Insert(2, 99)
+doublyList.Insert(4, 10)
+
 doublyList.print_list()
 doublyList.PrintTailHead()
