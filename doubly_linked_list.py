@@ -128,9 +128,9 @@ class DoublyLinkedList:
         if index < 0 or index >= self.length:
             return None
         if index == 0:
-            self.PopFirst()
-        elif index == self.length-1:
-            self.Pop()
+            return self.PopFirst()
+        if index == self.length-1:
+            return self.Pop()
         
         current = self.Get(index)
         previous = current.previous
