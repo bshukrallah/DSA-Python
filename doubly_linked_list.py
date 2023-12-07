@@ -127,16 +127,16 @@ class DoublyLinkedList:
     def Remove(self, index):
         if index < 0 or index >= self.length:
             return None
-        current = self.Get(index)
         if index == 0:
             self.PopFirst()
         elif index == self.length-1:
             self.Pop()
-        else:
-            previous = current.previous
-            next = current.next
-            previous.next = next
-            next.previous = previous
+        
+        current = self.Get(index)
+        previous = current.previous
+        next = current.next
+        previous.next = next
+        next.previous = previous
         self.length -= 1    
         return current
     
