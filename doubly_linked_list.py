@@ -124,6 +124,22 @@ class DoublyLinkedList:
             return self.head
         return None
     
+    def Remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        current = self.Get(index)
+        if index == 0:
+            self.PopFirst()
+        elif index == self.length-1:
+            self.Pop()
+        else:
+            previous = current.previous
+            next = current.next
+            previous.next = next
+            next.previous = previous
+        self.length -= 1    
+        return current
+    
     def PrintTailHead(self):
         try:
             print("Head-> " + str(doublyList.GetHead().GetValue()) + 
@@ -155,5 +171,9 @@ doublyList.Insert(0, 0)
 doublyList.Insert(2, 99)
 doublyList.Insert(4, 10)
 
+doublyList.print_list()
+doublyList.PrintTailHead()
+
+doublyList.Remove(0)
 doublyList.print_list()
 doublyList.PrintTailHead()
