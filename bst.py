@@ -30,7 +30,16 @@ class BinarySearchTree:
                     return True
                 current_node = current_node.right
         
-
+    def Contains(self, value):
+        current = self.root
+        while current is not None:
+            if current.value == value:
+                return True
+            elif value > current.value:
+                current = current.right
+            else:
+                current = current.left
+        return False
                 
 
 BST = BinarySearchTree()
@@ -41,3 +50,4 @@ BST.Insert(7)
 print(BST.root.value)
 print(BST.root.left.value)
 print(BST.root.right.value)
+print(BST.Contains(0))
