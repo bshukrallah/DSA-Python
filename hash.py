@@ -7,13 +7,26 @@ class HashTable:
     def __hash(self, key):
         my_hash = 0
         for letter in key:
-            my_hash = (my_hash + ord(letter) * 23) % len(self.data_map)
+            my_hash = (my_hash + ord(letter)) % len(self.data_map) # Simple algorithm to make a deterministic hash for a key
         return my_hash
 
     def print_table(self):
         for i, val in enumerate(self.data_map):
             print(i, ": ", val)
 
+    def set_item(self, key, value):
+        index = self.__hash(key) #Generate hash, this will be used as the index
+        if self.data_map[index] == None:
+            self.data_map[index] = [] #if index is empty generate an empty list
+        self.data_map[index].append([key, value]) #append [key, value] as a list to the list
+
 hashTable = HashTable()
+
+hashTable.print_table()
+hashTable.set_item("Dog", "Reishi")
+hashTable.set_item("Dog", "Apple")
+hashTable.set_item("Food", "Lemon")
+
+
 
 hashTable.print_table()
