@@ -18,8 +18,10 @@ print(f"unoptimized time: {unoptimized:.4f}")
 
 
 
-def gridTraveler_fast(m, n, memo={}):
-    key = str(m) + "," + str(n)
+def gridTraveler_fast(m, n, memo=None): #initialize memo with None, create it in the function
+    if memo is None: #initialize memo with None, create it in the function
+        memo = {}
+    key = str(m) + "," + str(n) #We make a key, combining the two vars as a string
     #print(memo)
     if (key in memo):
         return memo[key]
