@@ -37,5 +37,5 @@ def howSum(target, numbers, memo = None):
     memo[target] = None
     return None
 
-print(howSum(9, [2,3]))
+print(howSum(7, [2,3]))
 print(howSum(1000, [2,3]))
