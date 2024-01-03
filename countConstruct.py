@@ -1,4 +1,4 @@
-def canConstruct(target, wordBank, memo=None):
+def countConstruct(target, wordBank, memo=None):
     if memo is None:
         memo = {}
     if target in memo:
@@ -8,13 +8,13 @@ def canConstruct(target, wordBank, memo=None):
     count = 0
     for word in wordBank:
         if target.find(word) == 0: #check if the "word" in the wordbank starts at the beginning of the target word
-            result = canConstruct(target[len(word):], wordBank, memo)
+            result = countConstruct(target[len(word):], wordBank, memo)
             memo[target] = result
             count += result
 
     return count
 
-print(canConstruct("purple", ["urpl", "p", "le", "e", "urp", "le"]))
-print(canConstruct("word", ["job", "rd", "wo", "li", "jk", "d", "r"]))
-print(canConstruct("program", ["job", "pr", "gram", "a", "m", "ming", "o"]))
-print(canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", ["e", "ee", "eee", "eeee", "eeeeee", "eeeeeeeeeeeee", "aaaaaaaaaaa"]))
+print(countConstruct("purple", ["urpl", "p", "le", "e", "urp", "le"]))
+print(countConstruct("word", ["job", "rd", "wo", "li", "jk", "d", "r"]))
+print(countConstruct("program", ["job", "pr", "gram", "a", "m", "ming", "o"]))
+print(countConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", ["e", "ee", "eee", "eeee", "eeeeee", "eeeeeeeeeeeee", "aaaaaaaaaaa"]))
